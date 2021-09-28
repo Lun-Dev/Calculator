@@ -62,5 +62,9 @@ h1 {
 }
 
 #orangeBtn {
-    background: orange;
+    background: #FF9500;
+}
+
+#grayBtn {
+    background: #505050;
 }
