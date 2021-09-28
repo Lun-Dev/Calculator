@@ -1,0 +1,66 @@
+body {
+    background: #f1e4de;
+}
+
+h1 {
+    text-align: center;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 60px;
+    font
+}
+
+.flexContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 100px auto 30px auto;
+}
+
+.calculatorBody {
+    max-width: 340px;
+    width: 340px;
+    height: 40`0px;
+    margin: auto;
+    padding: 20px 10px;
+    background: black;
+    border-radius: 10px;
+}
+
+.basic-grid {
+    display: grid;
+    gap: 0.3rem;
+    grid-template-columns: repeat(auto-fit, minmax(70px, 4fr)) /* Repeat 1fr 4 times */
+}
+
+.basic-grid > * {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #353535;
+    font-size: 40px;
+    color: #fff;
+    box-shadow: rgba(3, 8, 20, 0.1) 0px 0.15rem 0.5rem, rgba(2, 8, 20, 0.1) 0px 0.075rem 0.175rem;
+    height: 60px;
+    width: 100%;
+    border-radius: 4px;
+    transition: all 500ms;
+    overflow: hidden;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.gridWide {
+    grid-column: span 4 / auto;
+    height: 80px;
+}
+
+.gridWide2 {
+    grid-column: span 2/ auto;
+}
+
+#orangeBtn {
+    background: orange;
+}
