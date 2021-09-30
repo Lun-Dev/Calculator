@@ -11,13 +11,20 @@ window.addEventListener("keydown", function(event) {
         if (event.key === numChoice[i]) {
             calcField += event.key
             output.textContent = `${calcField}`
-            console.log(calcField)  
-        }
+            document.getElementById("calcCalc").innerHTML = calcField;
+        } 
     }
     for (let i = 0; i < operatorChoice.length; i++) {
         if (event.key === operatorChoice[i] && calcField != "") {
             calcField2 = event.key
-            document.getElementById("calcCalc").innerHTML = calcField2;
+            document.getElementById("calcCalc2").innerHTML = calcField2;
+        }
+    }
+    for (let i = 0; i < numChoice.length; i++) {
+        if (event.key === numChoice[i] && calcField != "" && calcField2 != "") {
+            calcField3 += event.key
+            output.textContent = `${calcField3}`
+            document.getElementById("calcCalc3").innerHTML = calcField3;
         }
     }
     if (event.key === backSpace) {
@@ -28,5 +35,3 @@ window.addEventListener("keydown", function(event) {
         output.textContent = "0";
     }
 });
-
-
