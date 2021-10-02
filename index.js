@@ -1,66 +1,41 @@
 const output = document.getElementById("output")
-let calcField = ""
-let calcField2 = ""
-let calcField3 = ""
-let calcField4 = ""
+let number1 = "" //first calculation
+let number2 = "" //math opertator
+let number3 = "" //second calculation, if "" = false, if "something" = true
+let number4 = "" //result
 
 window.addEventListener("keydown", function(event) {
     const numChoice = "1234567890.";
     const operatorChoice = "+-*/%";
-    const backSpace = "Backspace";
+    const backSpace = "Backspace"; 
     for (let i = 0; i < numChoice.length, i < operatorChoice.length; i++) {
-        if (event.key === numChoice.charAt(i)) {
-            calcField += event.key
-            output.textContent = `${calcField}`
-            document.getElementById("calcCalc").innerHTML = calcField;
-            document.getElementById("calcCalc3").innerHTML = calcField.length;
+         // if input is any character of numChoice And second calculation is not false
+        if (event.key === numChoice.charAt(i) && !(number2)) {
+            number1 += event.key
+            output.textContent = `${number1}`
+            document.getElementById("calcCalc1").innerHTML = number1
+        // if input equals any character of operatorChoice
         } else if (event.key === operatorChoice.charAt(i)) {
-            calcField2 += event.key
-            document.getElementById("calcCalc2").innerHTML = calcField2;
-        } 
-    }
-    if (event.key === backSpace) {
-        calcField = calcField.slice(0,-1);
-        output.textContent = `${calcField}`
-        document.getElementById("calcCalc").innerHTML = calcField;
-        document.getElementById("calcCalc3").innerHTML = calcField.length;
-    }
-    if (calcField === "") {
-        output.textContent = "0";
+            number2 += event.key
+            document.getElementById("calcCalc2").innerHTML = number2;
+        // first calculation is true, math op. is true and input is any character of numChoice
+        } else if (number1 && number2 && event.key === numChoice.charAt(i)) {
+            number3 += event.key
+            output.textContent = `${number3}`
+            document.getElementById("calcCalc3").innerHTML = number3
+        // number3 is true and input is backspace
+        } else if (number3 && event.key === backSpace) {
+            number3 = number3.slice(0,-1);
+            output.textContent = `${number3}`
+            document.getElementById("calcCalc3").innerHTML = number3
+        } else if (!(number3) && number1 && event.key === backSpace) {
+            number1 = number1.slice(0,-1);
+            output.textContent = `${number1}`
+            document.getElementById("calcCalc1").innerHTML = number1
+        } else if (!(number1) && !(number3) && number2) {
+            number2 = ""
+            output.textContent = `${number2}`
+            document.getElementById("calcCalc2").innerHTML = number2
+        }
     }
 })
-
-//     for (let i = 0; i < numChoice.length; i++) {
-//         if (calcField !== "" && calcField2 !== "" && event.key === numChoice[i]) {
-//             calcField3 += event.key
-//             output.textContent = `${calcField3}`
-//             document.getElementById("calcCalc3").innerHTML = calcField3;
-//         }
-//     }
-//     for (let i = 0; i < numChoice.length; i++) {
-//         if (calcField2 === "" && event.key === numChoice[i]) {
-//             calcField += event.key
-//             output.textContent = `${calcField}`
-//             document.getElementById("calcCalc").innerHTML = calcField;
-//         } 
-//     }
-//     for (let i = 0; i < operatorChoice.length; i++) {
-//         if (event.key === operatorChoice[i] && calcField != "") {
-//             calcField2 = event.key
-//             document.getElementById("calcCalc2").innerHTML = calcField2;
-//         }
-//     }
-//     if (calcField2 !== "" && event.key === backSpace) {
-//         calcField2 = calcField2.slice(0,-1);
-//         output.textContent = `${calcField2}`
-//         document.getElementById("calcCalc2").innerHTML = calcField2;
-//     }
-//     if (calcField !== "" && event.key === backSpace) {
-//         calcField = calcField.slice(0,-1);
-//         output.textContent = `${calcField}`
-//         document.getElementById("calcCalc").innerHTML = calcField;
-//     }
-//     if (calcField === "") {
-//         output.textContent = "0";
-//     }
-// });
