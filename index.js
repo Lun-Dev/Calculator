@@ -8,7 +8,7 @@ window.addEventListener("keydown", function(event) {
     const numChoice = "1234567890.";
     const operatorChoice = "+-*/%";
     const backSpace = "Backspace"; 
-    for (let i = 0; i < numChoice.length, i < operatorChoice.length; i++) {
+    for (let i = 0; i < numChoice.length; i++) {
          // if input is any character of numChoice And second calculation is not false
         if (event.key === numChoice.charAt(i) && !(number2)) {
             number1 += event.key
