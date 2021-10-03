@@ -11,7 +11,7 @@ const enter = "Enter";
 window.addEventListener("keydown", function(event) {
     inputFunction(event)
     backSpaceFunction(event)
-    equalFunction(event)
+    equalFunction(event.key)
 })
 
 function inputFunction(event) {
@@ -51,10 +51,28 @@ function backSpaceFunction(event) {
     } 
 }
 
+// function equalFunction(event) {
+//     if (number1 && number2 && number3 && event.key === enter) {
+//         number4 = parseInt(number1) + parseInt(number3)
+//         output.textContent = `${number4}`
+//         document.getElementById("calcCalc4").innerHTML = number4
+//     }
+// }
+
 function equalFunction(event) {
-    if (number1 && number2 && number3 && event.key === enter) {
-        number4 = parseInt(number1) + parseInt(number3)
-        output.textContent = `${number4}`
-        document.getElementById("calcCalc4").innerHTML = number4
-    }
-}
+    switch (event) {
+        case (event.key === enter && number2 === "+"):
+          number4 = parseFloat(number1) + parseFloat(number3)
+          output.textContent = `${number4}`
+        case (event.key === enter && number2 === "-"):
+          number4 = parseFloat(number1) - parseFloat(number3)
+          output.textContent = `${number4}`
+        case (event.key === enter && number2 === "*"):
+          number4 = parseFloat(number1) * parseFloat(number3)
+          output.textContent = `${number4}`
+        case (event.key === enter && number2 === "/"):
+          number4 = parseFloat(number1) / parseFloat(number3)
+          output.textContent = `${number4}`
+  }
+  }
+
