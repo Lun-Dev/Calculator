@@ -11,7 +11,6 @@ const enter = "Enter";
 window.addEventListener("keydown", function(event) {
     inputFunction(event)
     backSpaceFunction(event)
-    equalFunction(event.key)
 })
 
 function inputFunction(event) {
@@ -59,20 +58,21 @@ function backSpaceFunction(event) {
 //     }
 // }
 
-function equalFunction(event) {
-    switch (event) {
-        case (event.key === enter && number2 === "+"):
-          number4 = parseFloat(number1) + parseFloat(number3)
-          output.textContent = `${number4}`
-        case (event.key === enter && number2 === "-"):
-          number4 = parseFloat(number1) - parseFloat(number3)
-          output.textContent = `${number4}`
-        case (event.key === enter && number2 === "*"):
-          number4 = parseFloat(number1) * parseFloat(number3)
-          output.textContent = `${number4}`
-        case (event.key === enter && number2 === "/"):
-          number4 = parseFloat(number1) / parseFloat(number3)
-          output.textContent = `${number4}`
-  }
-  }
+// function equalFunction(event) {
+//     switch (event) {
+//         case (event.key === enter):
+//             case(number2 === "+"):
+//                 number4 = parseFloat(number1) + parseFloat(number3)
+//                 output.textContent = `${number4}`
+//             case(number2 === "-"):
+//                 number4 = parseFloat(number1) - parseFloat(number3)
+//                 output.textContent = `${number4}`
+//             case(number2 === "*"):
+//                 number4 = parseFloat(number1) * parseFloat(number3)
+//                 output.textContent = `${number4}`
+//             case(number2 === "/"):
+//                 number4 = parseFloat(number1) / parseFloat(number3)
+//                 output.textContent = `${number4}`                 
+//   }
+//   }
 
