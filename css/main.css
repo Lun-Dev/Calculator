@@ -8,13 +8,6 @@ h1 {
     font-size: 60px;
 }
 
-#output {
-    margin-left: auto;
-    margin-right: 23px;
-    margin-top: 10px;
-    font-size: 4rem;
-}
-
 .flexContainer {
     display: flex;
     justify-content: center;
@@ -25,9 +18,9 @@ h1 {
 .calculatorBody {
     max-width: 340px;
     width: 340px;
-    height: 40`0px;
+    height: 410px;
     margin: auto;
-    padding: 20px 10px;
+    padding: 15px 10px;
     background: black;
     border-radius: 10px;
 }
@@ -60,7 +53,19 @@ h1 {
 
 .gridWide {
     grid-column: span 4 / auto;
-    height: 80px;
+    height: 90px;
+    display: flex;
+    align-items: flex-end;
+}
+
+#output {
+    font-size: 2.5rem;
+    padding: 10px 20px 10px 10px;
+}
+
+#output2 {
+    font-size: 1rem;
+    padding: 10px 20px 0px 0px;
 }
 
 .gridWide2 {
