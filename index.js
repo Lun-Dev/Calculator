@@ -7,12 +7,12 @@ const numChoice = "1234567890.";
 const operatorChoice = "+-*/%";
 const backSpace = "Backspace";
 const equal = "=";
- ;
+const enter = "Enter";
 
 window.addEventListener("keydown", function(event) {
+    calcFunction(event)
     inputFunction(event)
     backSpaceFunction(event)
-    equalFunction(event)
 })
 
 function inputFunction(event) {
@@ -52,29 +52,52 @@ function backSpaceFunction(event) {
     }
 }
 
-function equalFunction(event) {
-    if (event.key === equal && number2 === "+") {
-        number4 = parseFloat(number1) + parseFloat(number3)
-        output.textContent = `${number4}`
-        document.getElementById("calcCalc4").innerHTML = number4;
-    } else if (event.key === equal && number2 === "-") {
-        number4 = parseFloat(number1) - parseFloat(number3)
-        output.textContent = `${number4}`
-        document.getElementById("calcCalc4").innerHTML = number4;
-    } else if (event.key === equal && number2 === "*") {
-        number4 = parseFloat(number1) * parseFloat(number3)
-        output.textContent = `${number4}`
-        document.getElementById("calcCalc4").innerHTML = number4;
-    } else if (event.key === equal && number2 === "/") {
-        number4 = parseFloat(number1) / parseFloat(number3)
-        output.textContent = `${number4}`
-        document.getElementById("calcCalc4").innerHTML = number4;
-    } else if (event.key === equal && number2 === "%") {
-        number4 = parseFloat(number1) % parseFloat(number3)
-        output.textContent = `${number4}`
-        document.getElementById("calcCalc4").innerHTML = number4;
+function calcFunction(event) {
+    if (event.key === equal || event.key === enter) { 
+        if (number2 === "+") {
+            number4 = parseFloat(number1) + parseFloat(number3)
+            output.textContent = `${number4}`
+            document.getElementById("calcCalc4").innerHTML = number4;    
+        } else if (number2 === "-") {
+            number4 = parseFloat(number1) - parseFloat(number3)
+            output.textContent = `${number4}`
+            document.getElementById("calcCalc4").innerHTML = number4;
+        } else if (number2 === "*") {
+            number4 = parseFloat(number1) * parseFloat(number3)
+            output.textContent = `${number4}`
+            document.getElementById("calcCalc4").innerHTML = number4;
+        } else if (number2 === "*") {
+            number4 = parseFloat(number1) / parseFloat(number3)
+            output.textContent = `${number4}`
+            document.getElementById("calcCalc4").innerHTML = number4;
+        }
     }
 }
+
+
+// function calcFunction(event) {
+//     if (event.key === equal && number2 === "+") {
+//         number4 = parseFloat(number1) + parseFloat(number3)
+//         output.textContent = `${number4}`
+//         document.getElementById("calcCalc4").innerHTML = number4;
+//     } else if (event.key === equal && number2 === "-") {
+//         number4 = parseFloat(number1) - parseFloat(number3)
+//         output.textContent = `${number4}`
+//         document.getElementById("calcCalc4").innerHTML = number4;
+//     } else if (event.key === equal && number2 === "*") {
+//         number4 = parseFloat(number1) * parseFloat(number3)
+//         output.textContent = `${number4}`
+//         document.getElementById("calcCalc4").innerHTML = number4;
+//     } else if (event.key === equal && number2 === "/") {
+//         number4 = parseFloat(number1) / parseFloat(number3)
+//         output.textContent = `${number4}`
+//         document.getElementById("calcCalc4").innerHTML = number4;
+//     } else if (event.key === equal && number2 === "%") {
+//         number4 = parseFloat(number1) % parseFloat(number3)
+//         output.textContent = `${number4}`
+//         document.getElementById("calcCalc4").innerHTML = number4;
+//     }
+// }
 
 // function equalFunction(event) {
 //     if (number1 && number2 && number3 && event.key === enter) {
