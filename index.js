@@ -49,6 +49,9 @@ function backSpaceFunction(event) {
         number2 = ""
         output.textContent = `${number2}`
         document.getElementById("calcCalc2").innerHTML = number2
+    } else if (!(number1) && !(number3) && !(number2) && number4 && event.key === backSpace) {
+        number4 = 0;
+        output.textContent = "0";
     }
 }
 
