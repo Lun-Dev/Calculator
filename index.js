@@ -6,11 +6,13 @@ let number4 = "" //result
 const numChoice = "1234567890.";
 const operatorChoice = "+-*/%";
 const backSpace = "Backspace";
-const enter = "Enter";
+const equal = "=";
+ ;
 
 window.addEventListener("keydown", function(event) {
     inputFunction(event)
     backSpaceFunction(event)
+    equalFunction(event)
 })
 
 function inputFunction(event) {
@@ -29,7 +31,7 @@ function inputFunction(event) {
            number3 += event.key
            output.textContent = `${number3}`
            document.getElementById("calcCalc3").innerHTML = number3
-       }
+       } 
    }
 }
 
@@ -47,7 +49,31 @@ function backSpaceFunction(event) {
         number2 = ""
         output.textContent = `${number2}`
         document.getElementById("calcCalc2").innerHTML = number2
-    } 
+    }
+}
+
+function equalFunction(event) {
+    if (event.key === equal && number2 === "+") {
+        number4 = parseFloat(number1) + parseFloat(number3)
+        output.textContent = `${number4}`
+        document.getElementById("calcCalc4").innerHTML = number4;
+    } else if (event.key === equal && number2 === "-") {
+        number4 = parseFloat(number1) - parseFloat(number3)
+        output.textContent = `${number4}`
+        document.getElementById("calcCalc4").innerHTML = number4;
+    } else if (event.key === equal && number2 === "*") {
+        number4 = parseFloat(number1) * parseFloat(number3)
+        output.textContent = `${number4}`
+        document.getElementById("calcCalc4").innerHTML = number4;
+    } else if (event.key === equal && number2 === "/") {
+        number4 = parseFloat(number1) / parseFloat(number3)
+        output.textContent = `${number4}`
+        document.getElementById("calcCalc4").innerHTML = number4;
+    } else if (event.key === equal && number2 === "%") {
+        number4 = parseFloat(number1) % parseFloat(number3)
+        output.textContent = `${number4}`
+        document.getElementById("calcCalc4").innerHTML = number4;
+    }
 }
 
 // function equalFunction(event) {
