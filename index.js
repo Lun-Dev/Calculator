@@ -47,6 +47,16 @@ function backSpaceFunction(event) {
         result = result.toString().slice(0,-1)
         output.textContent = `${result}`
         document.getElementById("calcCalc4").innerHTML = result
+        if (result === "") {
+            output.textContent = 0
+            output2.textContent = 0
+            firstInput = ""
+            secondInput = ""
+            mathOperator = ""
+            document.getElementById("calcCalc1").innerHTML = firstInput
+            document.getElementById("calcCalc2").innerHTML = secondInput
+            document.getElementById("calcCalc3").innerHTML = mathOperator
+        }
     } 
 }
 
