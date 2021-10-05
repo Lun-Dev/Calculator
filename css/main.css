@@ -68,14 +68,22 @@ h1 {
     padding: 10px 20px 0px 0px;
 }
 
+#outputScreen:active {
+    background: #353535;
+}
+
 .gridWide2 {
     grid-column: span 2/ auto;
 }
 
-#orangeBtn {
+.orangeBtn {
     background: #FF9500;
 }
 
-#grayBtn {
+.grayBtn {
     background: #505050;
+}
+
+.gridItem:active {
+    background: #F8F8F8;
 }

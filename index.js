@@ -16,9 +16,8 @@ window.addEventListener("keydown", function(event) {
     backSpaceFunction(event)
 })
 
-
-
 function inputFunction(event) {
+    // const btnNumber = document.getElementById(`${event.key}`)
     for (let i = 0; i < numChoice.length; i++) {
         // if input is any character of numChoice And second calculation is not false
        if (event.key === numChoice.charAt(i) && !(number2)) {
