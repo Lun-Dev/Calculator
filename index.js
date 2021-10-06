@@ -1,5 +1,6 @@
 const output = document.getElementById("output")
 const output2 = document.getElementById("output2")
+const basicGrid = document.querySelector(".basic-grid")
 let firstInput = "" //first calculation
 let mathOperator = "" //math opertator
 let secondInput = "" //second calculation, if "" = false, if "something" = true
@@ -15,6 +16,10 @@ window.addEventListener("keydown", function(event) {
     calcFunction(event)
     inputFunction(event)
     backSpaceFunction(event)
+})
+
+window.addEventListener("click", function(basicGrid) {
+    console.log(basicGrid.target.id)
 })
 
 function inputFunction(event) {
