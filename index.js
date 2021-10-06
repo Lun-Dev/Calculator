@@ -16,14 +16,16 @@ window.addEventListener("keydown", function(event) {
     calcFunction(event)
     inputFunction(event)
     backSpaceFunction(event)
-    preventZeroOne()
+    preventZeroOne(event)
     escapeBtn(event)
 })
 
-function preventZeroOne() {
+function preventZeroOne(event) {
     for (let i = 0; i < numChoice.length; i++) {
         if (firstInput.charAt(0) === "0") {
             firstInput = ""
+        } else if (event.key === "." && firstInput.includes(".")) {
+            firstInput = firstInput.toString().slice(0,-1)
         }
 }}
 
@@ -65,6 +67,7 @@ function backSpaceFunction(event) {
     } else if (!(secondInput) && firstInput > 2 && event.key === backSpace) {
         firstInput = firstInput.toString().slice(0,-1)
         output.textContent = `${firstInput}`
+        output2.textContent = `${firstInput}`
     } else if (secondInput.length === 1 && event.key === backSpace) {
         secondInput ="0"
         output.textContent = `${secondInput}`
