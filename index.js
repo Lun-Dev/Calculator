@@ -10,6 +10,7 @@ const operatorChoice = "+-*/%";
 const backSpace = "Backspace";
 const equal = "=";
 const enter = "Enter";
+const esc = "Escape";
 
 
 window.addEventListener("keydown", function(event) {
@@ -17,12 +18,7 @@ window.addEventListener("keydown", function(event) {
     inputFunction(event)
     backSpaceFunction(event)
     preventZeroOne()
-})
-
-window.addEventListener("click", function(basicGrid) {
-    const str = basicGrid.target.id
-    const pattern = /[a-z]/gi
-    console.log(str.match(pattern))
+    ac(event)
 })
 
 function preventZeroOne() {
@@ -76,6 +72,16 @@ function clearZero() {
     } 
 }
 
+function ac(event) {
+    if (event.key === esc) {
+        output.textContent = 0
+        output2.textContent = 0
+        firstInput = ""
+        secondInput = ""
+        mathOperator = ""
+    }
+}
+
 function calcFunction(event) {
     if (event.key === equal || event.key === enter) { 
         if (mathOperator === "+" && secondInput) {
@@ -93,6 +99,10 @@ function calcFunction(event) {
             output.textContent = `${result}`
             output2.textContent = `${firstInput} ${mathOperator} ${secondInput} =`
             document.getElementById("calcCalc4").innerHTML = result;
+        } else if (mathOperator === "/" && firstInput && secondInput === "0") {
+            result = "Not a number"
+            output.textContent = `${result}`
+            output2.textContent = ""
         } else if (mathOperator === "/" && secondInput) {
             result = parseFloat(firstInput) / parseFloat(secondInput)
             output.textContent = `${result}`
@@ -100,7 +110,7 @@ function calcFunction(event) {
             document.getElementById("calcCalc4").innerHTML = result;
         } else if (mathOperator === "%" && secondInput) {
             result = parseFloat(firstInput) % parseFloat(secondInput)
-        }
+        } 
     }
 }
 
