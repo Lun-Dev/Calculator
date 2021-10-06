@@ -1,6 +1,5 @@
 const output = document.getElementById("output")
 const output2 = document.getElementById("output2")
-const basicGrid = document.querySelector(".basic-grid")
 let firstInput = "" //first calculation
 let mathOperator = "" //math opertator
 let secondInput = "" //second calculation, if "" = false, if "something" = true
@@ -18,7 +17,7 @@ window.addEventListener("keydown", function(event) {
     inputFunction(event)
     backSpaceFunction(event)
     preventZeroOne()
-    ac(event)
+    escapeBtn(event)
 })
 
 function preventZeroOne() {
@@ -59,7 +58,18 @@ function backSpaceFunction(event) {
         output.textContent = `${result}`
         document.getElementById("calcCalc4").innerHTML = result
         clearZero()
-    } 
+    } else if (!(secondInput) && firstInput.length === 1 && event.key === backSpace) {
+        firstInput = "0"
+        output.textContent = `${firstInput}`
+        output2.textContent = 0
+    } else if (!(secondInput) && firstInput > 2 && event.key === backSpace) {
+        firstInput = firstInput.toString().slice(0,-1)
+        output.textContent = `${firstInput}`
+    } else if (secondInput.length === 1 && event.key === backSpace) {
+        secondInput ="0"
+        output.textContent = `${secondInput}`
+        output2.textContent = 0
+    }
 }
 
 function clearZero() {
@@ -72,7 +82,7 @@ function clearZero() {
     } 
 }
 
-function ac(event) {
+function escapeBtn(event) {
     if (event.key === esc) {
         output.textContent = 0
         output2.textContent = 0
