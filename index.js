@@ -15,19 +15,19 @@ const esc = "Escape";
 window.addEventListener("keydown", function(event) {
     calcFunction(event)
     inputFunction(event)
+    // preventZeroOne(event)
     backSpaceFunction(event)
-    preventZeroOne(event)
     escapeBtn(event)
 })
 
-function preventZeroOne(event) {
-    for (let i = 0; i < numChoice.length; i++) {
-        if (firstInput.charAt(0) === "0") {
-            firstInput = ""
-        } else if (event.key === "." && firstInput.includes(".")) {
-            firstInput = firstInput.toString().slice(0,-1)
-        }
-}}
+// function preventZeroOne(event) {
+//     for (let i = 0; i < numChoice.length; i++) {
+//         if (firstInput.charAt(0) === "0") {
+//             firstInput = ""
+//         } else if (event.key === "." && firstInput.includes(".")) {
+//             firstInput = firstInput.toString().slice(0,-1)
+//         } 
+// }}
 
 function inputFunction(event) {
     // const btnNumber = document.getElementById(`${event.key}`)
@@ -49,7 +49,7 @@ function inputFunction(event) {
            output.textContent = `${secondInput}`
            output2.textContent = `${firstInput} ${mathOperator} ${secondInput}`
            document.getElementById("calcCalc3").innerHTML = secondInput
-       } 
+       }
    }
 }
 
@@ -127,87 +127,3 @@ function calcFunction(event) {
     }
 }
 
-
-// function calcFunction(event) {
-//     if (event.key === equal && mathOperator === "+") {
-//         result = parseFloat(firstInput) + parseFloat(secondInput)
-//         output.textContent = `${result}`
-//         document.getElementById("calcCalc4").innerHTML = result;
-//     } else if (event.key === equal && mathOperator === "-") {
-//         result = parseFloat(firstInput) - parseFloat(secondInput)
-//         output.textContent = `${result}`
-//         document.getElementById("calcCalc4").innerHTML = result;
-//     } else if (event.key === equal && mathOperator === "*") {
-//         result = parseFloat(firstInput) * parseFloat(secondInput)
-//         output.textContent = `${result}`
-//         document.getElementById("calcCalc4").innerHTML = result;
-//     } else if (event.key === equal && mathOperator === "/") {
-//         result = parseFloat(firstInput) / parseFloat(secondInput)
-//         output.textContent = `${result}`
-//         document.getElementById("calcCalc4").innerHTML = result;
-//     } else if (event.key === equal && mathOperator === "%") {
-//         result = parseFloat(firstInput) % parseFloat(secondInput)
-//         output.textContent = `${result}`
-//         document.getElementById("calcCalc4").innerHTML = result;
-//     }
-// }
-
-// function equalFunction(event) {
-//     if (firstInput && mathOperator && secondInput && event.key === enter) {
-//         result = parseInt(firstInput) + parseInt(secondInput)
-//         output.textContent = `${result}`
-//         document.getElementById("calcCalc4").innerHTML = result
-//     }
-// }
-
-// function equalFunction(event) {
-//     switch (event) {
-//         case (event.key === enter):
-//             case(mathOperator === "+"):
-//                 result = parseFloat(firstInput) + parseFloat(secondInput)
-//                 output.textContent = `${result}`
-//             case(mathOperator === "-"):
-//                 result = parseFloat(firstInput) - parseFloat(secondInput)
-//                 output.textContent = `${result}`
-//             case(mathOperator === "*"):
-//                 result = parseFloat(firstInput) * parseFloat(secondInput)
-//                 output.textContent = `${result}`
-//             case(mathOperator === "/"):
-//                 result = parseFloat(firstInput) / parseFloat(secondInput)
-//                 output.textContent = `${result}`                 
-//   }
-//   }
-//     // first input, second input, math operator all true, result false but !, event key equals backspace
-// } else if (firstInput && secondInput && mathOperator && !(result) && event.key === backSpace) {
-//     output.textContent = "0"
-// // first input, math operator true, second input, result false but !, event key equals backspace
-// } else if (firstInput && !(secondInput) && mathOperator && !(result) && event.key === backSpace) {
-    
-// }
-// function backSpaceFunction(event) {
-//     // secondInput is true and input is backspace
-//     if (secondInput && event.key === backSpace) {
-//         secondInput = secondInput.slice(0,-1);
-//         output.textContent = `${secondInput}`
-//         output2.textContent = `${firstInput} ${mathOperator} ${secondInput}`
-//         document.getElementById("calcCalc3").innerHTML = secondInput
-//     } else if (!(secondInput) && firstInput && event.key === backSpace) {
-//         firstInput = firstInput.slice(0,-1);
-//         output.textContent = `${firstInput}`
-//         output2.textContent = `${firstInput} ${mathOperator} ${secondInput}`
-//         document.getElementById("calcCalc1").innerHTML = firstInput
-//     } else if (!(firstInput) && !(secondInput) && mathOperator) {
-//         mathOperator = ""
-//         output.textContent = `${mathOperator}`
-//         output2.textContent = `${firstInput} ${mathOperator} ${secondInput}`
-//         document.getElementById("calcCalc2").innerHTML = mathOperator
-//     } else if (!(firstInput) && !(mathOperator) && !(secondInput) && result && event.key === backSpace) {
-//         firstInput = ""
-//         mathOperator = ""
-//         secondInput = ""
-//         result = "0"
-//         output.textContent = `${result}`
-//         output2.textContent = "0"
-//         document.getElementById("calcCalc4").innerHTML = result
-//     }
-// }
