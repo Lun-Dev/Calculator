@@ -1,33 +1,26 @@
 const output = document.getElementById("output")
 const output2 = document.getElementById("output2")
-let firstInput = "" //first calculation
-let mathOperator = "" //math opertator
-let secondInput = "" //second calculation, if "" = false, if "something" = true
-let result = "" //result
-const numChoice = "1234567890.";
+const numChoice = "1234567890";
+const point = ".";
 const operatorChoice = "+-*/%";
 const backSpace = "Backspace";
 const equal = "=";
 const enter = "Enter";
 const esc = "Escape";
+let firstInput = "" //first calculation
+let mathOperator = "" //math opertator
+let secondInput = "" //second calculation, if "" = false, if "something" = true
+let result = "" //result
 
 
 window.addEventListener("keydown", function(event) {
     calcFunction(event)
     inputFunction(event)
-    // preventZeroOne(event)
     backSpaceFunction(event)
     escapeBtn(event)
-})
+})  
 
-// function preventZeroOne(event) {
-//     for (let i = 0; i < numChoice.length; i++) {
-//         if (firstInput.charAt(0) === "0") {
-//             firstInput = ""
-//         } else if (event.key === "." && firstInput.includes(".")) {
-//             firstInput = firstInput.toString().slice(0,-1)
-//         } 
-// }}
+
 
 function inputFunction(event) {
     // const btnNumber = document.getElementById(`${event.key}`)
@@ -77,22 +70,22 @@ function backSpaceFunction(event) {
 
 function clearZero() {
     if (result === "" || result === "0") {
-        output.textContent = 0
-        output2.textContent = 0
-        firstInput = ""
-        secondInput = ""
-        mathOperator = ""
+        reset()
     } 
 }
 
 function escapeBtn(event) {
     if (event.key === esc) {
-        output.textContent = 0
-        output2.textContent = 0
-        firstInput = ""
-        secondInput = ""
-        mathOperator = ""
+        reset()
     }
+}
+
+function reset() {
+    output.textContent = 0
+    output2.textContent = 0
+    firstInput = ""
+    secondInput = ""
+    mathOperator = ""
 }
 
 function calcFunction(event) {
@@ -127,3 +120,11 @@ function calcFunction(event) {
     }
 }
 
+// function preventZeroOne(event) {
+//     for (let i = 0; i < numChoice.length; i++) {
+//         if (firstInput.charAt(0) === "0") {
+//             firstInput = ""
+//         } else if (event.key === "." && firstInput.includes(".")) {
+//             firstInput = firstInput.toString().slice(0,-1)
+//         } 
+// }}
