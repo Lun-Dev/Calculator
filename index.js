@@ -1,8 +1,8 @@
 const output = document.getElementById("output")
 const output2 = document.getElementById("output2")
-const numChoice = /[0-9]/;
+const numChoice = /\d/;
+const operatorChoice = /[+\-\*\/%]/;
 const point = ".";
-const operatorChoice = "+-*/%";
 const backSpace = "Backspace";
 const equal = "=";
 const enter = "Enter";
@@ -15,6 +15,7 @@ let result = "" //result
 
 window.addEventListener("keydown", function(event) {
     inputOne(event)
+    inputMath(event)
     inputTwo(event)
     calcFunction(event)
     inputFunction(event)
@@ -26,6 +27,13 @@ function inputOne(event) {
     if (event.key.match(numChoice)) {
         firstInput += event.key
         console.log(firstInput)
+    }
+}
+
+function inputMath(event) {
+    if (event.key.match(operatorChoice) && firstInput) {
+        mathOperator += event.key
+        console.log(mathOperator)
     }
 }
 
