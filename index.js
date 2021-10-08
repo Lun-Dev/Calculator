@@ -2,7 +2,7 @@ const output = document.getElementById("output")
 const output2 = document.getElementById("output2")
 const numChoice = /\d/;
 const operatorChoice = /[+\-\*\/%]/;
-const point = ".";
+const dotChoice = /\./g;
 const backSpace = "Backspace";
 const equal = "=";
 const enter = "Enter";
@@ -14,27 +14,59 @@ let result = "" //result
 
 
 window.addEventListener("keydown", function(event) {
-    inputOne(event)
-    inputMath(event)
-    inputTwo(event)
-    calcFunction(event)
-    inputFunction(event)
-    backSpaceFunction(event)
-    escapeBtn(event)
-})  
+    if (event.key.match(numChoice)) numInput(event)
+    if (event.key.match(operatorChoice)) mathInput(event)
+    if (event.key.match(dotChoice)) dotInput(event)
+})
 
-function inputOne(event) {
-    if (event.key.match(numChoice)) {
+// window.addEventListener("keydown", function(event) {
+//     inputOne(event)
+//     inputMath(event)
+//     inputTwo(event)
+//     calcFunction(event)
+//     inputFunction(event)
+//     backSpaceFunction(event)
+//     escapeBtn(event)
+// })  
+
+function fullOutput(event) {
+    secondInput += event.key
+    return output.textContent = `${firstInput}${mathOperator}${secondInput}`
+}
+
+function dotInput(event) {
+    if (!(secondInput)) {
         firstInput += event.key
-        console.log(firstInput)
+        output.textContent = `${firstInput}`
+    }
+}
+
+function numInput(event) {
+    if (!(mathOperator) && !(secondInput)) {
+        firstInput += event.key
+        output.textContent = `${firstInput}`
+    } else if (firstInput && mathOperator) {
+        fullOutput(event)
+    }
+}
+
+function mathInput(event) {
+    if (mathOperator < 1) {
+        mathOperator = event.key
+        output.textContent = `${firstInput}${mathOperator}`
+    } else if (event.key.match(operatorChoice)) {
+        mathOperator = event.key
+        output.textContent = `${firstInput}${mathOperator}`
     }
 }
 
 function inputMath(event) {
     if (event.key.match(operatorChoice) && firstInput) {
         mathOperator += event.key
-        console.log(mathOperator)
+    } else if (event.key.match(operatorChoice) && firstInput && mathOperator) {
+        mathOperator = mathOperator
     }
+    console.log(mathOperator)
 }
 
 function inputTwo(event) {
