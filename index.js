@@ -16,7 +16,7 @@ let result = "" //result
 window.addEventListener("keydown", function(event) {
     if (event.key.match(numChoice)) numInput(event)
     if (event.key.match(operatorChoice)) mathInput(event)
-    if (event.key.match(dotChoice)) dotInput(event)
+    if (event.key.match(dotChoice)) dotInput()
 })
 
 // window.addEventListener("keydown", function(event) {
@@ -34,11 +34,14 @@ function fullOutput(event) {
     return output.textContent = `${firstInput}${mathOperator}${secondInput}`
 }
 
-function dotInput(event) {
-    if (!(secondInput)) {
-        firstInput += event.key
-        output.textContent = `${firstInput}`
-    }
+function dotInput() {
+    // if (firstInput === '') {
+    //     firstInput = "0"
+    //     output.textContent = `${firstInput}`
+    // } else if (firstInput.includes('.') {
+    //     firstInput += "."
+    //     output.textContent = `${firstInput}`
+    // }
 }
 
 function numInput(event) {
