@@ -1,5 +1,6 @@
 const output = document.getElementById("output")
 const output2 = document.getElementById("output2")
+const btnItem = document.querySelectorAll("gridItem")
 const numChoice = /\d/; // Regex any digit character
 const operatorChoice = /[+\-\*\/%]/; // Regex any of "+", "-", "*", "/", "%"
 const dotChoice = /\./g; // Regex "."
@@ -17,25 +18,40 @@ window.addEventListener("keydown", function(event) {
     if (event.key.match(operatorChoice)) mathInput(event)
     if (event.key.match(dotChoice)) dotInput(event)
     if (event.key.match(equalChoice)) operate(firstInput, secondInput, mathOperator)
-//     if (event.key.match(backSpace))
+    if (event.key.match(backSpace)) clearFunction()
+    if (event.key.match(esc)) reset()
 })
+
+console.log(btnItem.textContent)
+
+window.addEventListener("click", function() {
+    for(i = 0; i < btnItem.length; i++) {
+        console.log(btnItem.textContent)
+    }
+})
+
 
 function numInput(event) {
     if (!(mathOperator) && !(secondInput)) {
         firstInput += event.key
         output.textContent = `${firstInput}`
+        output2.textContent = `${firstInput}`
     } else if (firstInput && mathOperator) {
-        fullOutput(event)
+        secondInput += event.key
+        output.textContent = `${secondInput}`
+        output2.textContent = `${firstInput} ${mathOperator} ${secondInput}`
     }
 }
 
 function mathInput(event) {
     if (mathOperator < 1) {
         mathOperator = event.key
-        output.textContent = `${firstInput}${mathOperator}`
+        output.textContent = `${firstInput}`
+        output2.textContent = `${firstInput} ${mathOperator}`
     } else if (event.key.match(operatorChoice)) {
         mathOperator = event.key
-        output.textContent = `${firstInput}${mathOperator}`
+        output.textContent = `${firstInput}`
+        output2.textContent = `${firstInput} ${mathOperator}`
     }
 }
 
@@ -53,18 +69,6 @@ function dotInput(event) {
     } 
 }
 
-//No additional dots for secondInput, displays final
-function halfOutput() { 
-    secondInput
-    return output.textContent = `${firstInput}${mathOperator}${secondInput}`
-}
-
-//Normal display final
-function fullOutput(event) { 
-    secondInput += event.key
-    return output.textContent = `${firstInput}${mathOperator}${secondInput}`
-}
-
 function operate(firstInput, secondInput, mathOperator) {
     firstInput = parseFloat(firstInput)
     secondInput = parseFloat(secondInput)
@@ -72,14 +76,17 @@ function operate(firstInput, secondInput, mathOperator) {
             case ("+"):
                 result = Math.round((firstInput + secondInput) * 100)/100;
                 output.textContent = result
+                output2.textContent = `${firstInput} ${mathOperator} ${secondInput} =`
                 break;
             case ("-"):
                 result = Math.round((firstInput - secondInput) * 100)/100;
                 output.textContent = result
+                output2.textContent = `${firstInput} ${mathOperator} ${secondInput} =`
                 break;
             case ("*"):
                 result = Math.round((firstInput * secondInput) * 100)/100;
                 output.textContent = result
+                output2.textContent = `${firstInput} ${mathOperator} ${secondInput} =`
                 break;
             case ("/"):
                 if (secondInput === 0) {
@@ -89,31 +96,54 @@ function operate(firstInput, secondInput, mathOperator) {
                 } else {
                     result = Math.round((firstInput / secondInput) * 100)/100;
                     output.textContent = result
+                    output2.textContent = `${firstInput} ${mathOperator} ${secondInput} =`
                     break;
             }
         }
 }
 
+function clearFunction() {
+    if (firstInput) {
+        firstInput = firstInput.toString().slice(0,-1)  
+        output.textContent = `${firstInput}`
+        output2.textContent = `${firstInput}`
+    }
+    if (firstInput === "") {
+        firstInput = 0
+        output.textContent = `${firstInput}`
+        output2.textContent = `${firstInput}`
+    }
+}
 
+function reset() {
+    output.textContent = 0
+    output2.textContent = 0
+    firstInput = ""
+    secondInput = ""
+    mathOperator = ""
+} 
 
+//No additional dots for secondInput, displays final
+function halfOutput() { 
+    secondInput
+    return output.textContent = `${firstInput}${mathOperator}${secondInput}`
+}
 
+//Normal display final
+function fullOutput(event) { 
+    secondInput += event.key
+    output.textContent = `${firstInput}${mathOperator}${secondInput}`
+    output2.textContent = `${firstInput}${mathOperator}${secondInput}`
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// //Reset everything
+// function reset() {
+//     output.textContent = 0
+//     output2.textContent = 0
+//     firstInput = ""
+//     secondInput = ""
+//     mathOperator = ""
+// }
 
 // function inputMath(event) {
 //     if (event.key.match(operatorChoice) && firstInput) {
