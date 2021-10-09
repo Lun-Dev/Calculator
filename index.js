@@ -1,7 +1,7 @@
 const output = document.getElementById("output")
 const output2 = document.getElementById("output2")
 const numChoice = /\d/; // Regex any digit character
-const operatorChoice = /[+\-\*\/%]/; // Regex "+", "-", "*", "/", "%"
+const operatorChoice = /[+\-\*\/%]/; // Regex any of "+", "-", "*", "/", "%"
 const dotChoice = /\./g; // Regex "."
 const equalChoice = /=|Enter/; // Regex "=" or "Enter"
 const backSpace = /^Backspace$/; // Regex "Backspace"
@@ -15,13 +15,9 @@ let result = "" //result
 window.addEventListener("keydown", function(event) {
     if (event.key.match(numChoice)) numInput(event)
     if (event.key.match(operatorChoice)) mathInput(event)
-    if (event.key.match(dotChoice)) dotInput()
-    if (event.key.match(equalChoice)) {
-        console.log("hello")
-    }
-    if (event.key.match(backSpace)) {
-        console.log("no")
-    }
+    if (event.key.match(dotChoice)) dotInput(event)
+    if (event.key.match(equalChoice)) operate(firstInput, secondInput, mathOperator)
+//     if (event.key.match(backSpace))
 })
 
 function numInput(event) {
@@ -43,17 +39,28 @@ function mathInput(event) {
     }
 }
 
-function dotInput() {
-    // if (firstInput === '') {
-    //     firstInput = "0"
-    //     output.textContent = `${firstInput}`
-    // } else if (firstInput.includes('.') {
-    //     firstInput += "."
-    //     output.textContent = `${firstInput}`
-    // }
+function dotInput(event) {
+    if (firstInput.match(dotChoice) && !(secondInput)) {
+        firstInput
+        output.textContent = `${firstInput}`
+    } else if (!(firstInput.match(dotChoice))) {
+        firstInput += event.key
+        output.textContent = `${firstInput}`
+    } else if (firstInput && mathOperator && secondInput.match(dotChoice)) {
+        halfOutput()
+    } else if (firstInput && mathOperator && !(secondInput.match(dotChoice))) {
+        fullOutput(event)
+    } 
 }
 
-function fullOutput(event) {
+//No additional dots for secondInput, displays final
+function halfOutput() { 
+    secondInput
+    return output.textContent = `${firstInput}${mathOperator}${secondInput}`
+}
+
+//Normal display final
+function fullOutput(event) { 
     secondInput += event.key
     return output.textContent = `${firstInput}${mathOperator}${secondInput}`
 }
@@ -63,16 +70,26 @@ function operate(firstInput, secondInput, mathOperator) {
     secondInput = parseFloat(secondInput)
         switch (mathOperator) {
             case ("+"):
-                return firstInput + secondInput;
+                result = Math.round((firstInput + secondInput) * 100)/100;
+                output.textContent = result
+                break;
             case ("-"):
-                return firstInput - secondInput;
+                result = Math.round((firstInput - secondInput) * 100)/100;
+                output.textContent = result
+                break;
             case ("*"):
-                return firstInput * secondInput;
+                result = Math.round((firstInput * secondInput) * 100)/100;
+                output.textContent = result
+                break;
             case ("/"):
                 if (secondInput === 0) {
-                    return "Not a number"
+                    result = "Not a number";
+                    output.textContent = result
+                    break;
                 } else {
-                    return firstInput / secondInput;
+                    result = Math.round((firstInput / secondInput) * 100)/100;
+                    output.textContent = result
+                    break;
             }
         }
 }
