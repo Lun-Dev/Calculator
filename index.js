@@ -2,7 +2,7 @@ const output = document.getElementById("output")
 const output2 = document.getElementById("output2")
 const btnItem = document.querySelectorAll("button")
 const numChoice = /\d/; // Regex any digit character
-const operatorChoice = /[+\-\*\/%\x]/; // Regex any of "+", "-", "*", "/", "%"
+const operatorChoice = /[+\-\*\/%\x\÷]/; // Regex any of "+", "-", "*", "/", "%"
 const dotChoice = /\./g; // Regex "."
 const equalChoice = /=|Enter/; // Regex "=" or "Enter"
 const backSpace = /^Backspace$/; // Regex "Backspace"
@@ -74,7 +74,7 @@ function dotBtnInput(btnInput) {
         firstInput += btnInput.textContent
         output.textContent = `${firstInput}`
     } else if (firstInput && mathOperator && secondInput.match(dotChoice)) {
-        halfOutput()
+        halfOutput(btnInput)
     } else if (firstInput && mathOperator && !(secondInput.match(dotChoice))) {
         fullOutput(btnInput)
     } 
@@ -139,6 +139,7 @@ function operate(firstInput, secondInput, mathOperator) {
                 output.textContent = result
                 output2.textContent = `${firstInput} ${mathOperator} ${secondInput} =`
                 break;
+            case ("÷"):
             case ("/"):
                 if (secondInput === 0) {
                     result = "Not a number";
