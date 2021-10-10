@@ -1,12 +1,13 @@
 const output = document.getElementById("output")
 const output2 = document.getElementById("output2")
-const btnItem = document.querySelectorAll("gridItem")
+const btnItem = document.querySelectorAll("button")
 const numChoice = /\d/; // Regex any digit character
-const operatorChoice = /[+\-\*\/%]/; // Regex any of "+", "-", "*", "/", "%"
+const operatorChoice = /[+\-\*\/%\x]/; // Regex any of "+", "-", "*", "/", "%"
 const dotChoice = /\./g; // Regex "."
 const equalChoice = /=|Enter/; // Regex "=" or "Enter"
 const backSpace = /^Backspace$/; // Regex "Backspace"
 const esc = /^Escape$/; // Regex "Escape"
+const ac = /^AC$/; // Regex "AC"
 let firstInput = "" //first calculation
 let mathOperator = "" //math opertator
 let secondInput = "" //second calculation, if "" = false, if "something" = true
@@ -22,13 +23,62 @@ window.addEventListener("keydown", function(event) {
     if (event.key.match(esc)) reset()
 })
 
-console.log(btnItem.textContent)
+for (let i = 0; i < btnItem.length; i++) {
+    let btnInput = btnItem[i]
+    btnInput.addEventListener("click", function() {
+        if (btnInput.textContent.match(numChoice)) {
+            numBtnInput(btnInput)
+        } else if (btnInput.textContent.match(operatorChoice)) {
+            if (firstInput) {
+            mathBtnInput(btnInput)}
+        } else if (btnInput.textContent.match(dotChoice)) {
+            dotBtnInput(btnInput)
+        } else if (btnInput.textContent.match(equalChoice)) {
+            if (firstInput && secondInput) {
+            operate(firstInput, secondInput, mathOperator)}
+        } else if (btnInput.textContent.match(ac)) {
+            reset()
+        }
+    })
+}
 
-window.addEventListener("click", function() {
-    for(i = 0; i < btnItem.length; i++) {
-        console.log(btnItem.textContent)
+function numBtnInput(btnInput) {
+    if (!(mathOperator) && !(secondInput)) {
+        firstInput += btnInput.textContent
+        output.textContent = `${firstInput}`
+        output2.textContent = `${firstInput}`
+    } else if (firstInput && mathOperator) {
+        secondInput += btnInput.textContent
+        output.textContent = `${secondInput}`
+        output2.textContent = `${firstInput} ${mathOperator} ${secondInput}`
     }
-})
+}
+
+function mathBtnInput(btnInput) {
+    if (mathOperator < 1) {
+        mathOperator = btnInput.textContent
+        output.textContent = `${firstInput}`
+        output2.textContent = `${firstInput} ${mathOperator}`
+    } else if (btnInput.textContent.match(operatorChoice)) {
+        mathOperator = btnInput.textContent
+        output.textContent = `${firstInput}`
+        output2.textContent = `${firstInput} ${mathOperator}`
+    }
+}
+
+function dotBtnInput(btnInput) {
+    if (firstInput.match(dotChoice) && !(secondInput)) {
+        firstInput
+        output.textContent = `${firstInput}`
+    } else if (!(firstInput.match(dotChoice))) {
+        firstInput += btnInput.textContent
+        output.textContent = `${firstInput}`
+    } else if (firstInput && mathOperator && secondInput.match(dotChoice)) {
+        halfOutput()
+    } else if (firstInput && mathOperator && !(secondInput.match(dotChoice))) {
+        fullOutput(btnInput)
+    } 
+}
 
 
 function numInput(event) {
@@ -83,6 +133,7 @@ function operate(firstInput, secondInput, mathOperator) {
                 output.textContent = result
                 output2.textContent = `${firstInput} ${mathOperator} ${secondInput} =`
                 break;
+            case ("x"):
             case ("*"):
                 result = Math.round((firstInput * secondInput) * 100)/100;
                 output.textContent = result
@@ -132,6 +183,13 @@ function halfOutput() {
 //Normal display final
 function fullOutput(event) { 
     secondInput += event.key
+    output.textContent = `${firstInput}${mathOperator}${secondInput}`
+    output2.textContent = `${firstInput}${mathOperator}${secondInput}`
+}
+
+//Normal display final for btn
+function fullBtnOutput(btnInput) { 
+    secondInput += btnInput.textContent
     output.textContent = `${firstInput}${mathOperator}${secondInput}`
     output2.textContent = `${firstInput}${mathOperator}${secondInput}`
 }
