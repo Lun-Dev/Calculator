@@ -103,7 +103,7 @@ function numInput(event) {
 function mathInput(event) {
     if (result) {
         firstInput = result
-        result = ""
+        // result = ""
         secondInput = ""
         mathOperator = event.key
         output.textContent = `${firstInput}`
@@ -182,11 +182,12 @@ function clearFunction() {
 }
 
 function reset() {
-    output.textContent = 0
-    output2.textContent = 0
     firstInput = ""
     secondInput = ""
     mathOperator = ""
+    result = ""
+    output.textContent = `${firstInput}`
+    output2.textContent = `${firstInput}`
 } 
 
 //No additional dots for secondInput, displays final
