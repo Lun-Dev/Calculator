@@ -2,8 +2,9 @@ const output = document.getElementById("output")
 const output2 = document.getElementById("output2")
 const btnItem = document.querySelectorAll("button")
 const numChoice = /\d/; // Regex any digit character
-const operatorChoice = /[+\-\*\/%\x\÷]/; // Regex any of "+", "-", "*", "/", "%"
+const operatorChoice = /[+|\-|*|%|x|÷]/; // Regex any of "+", "-", "*", "/", "%"
 const dotChoice = /\./g; // Regex "."
+const plusMinus = /^±$/;
 const equalChoice = /=|Enter/; // Regex "=" or "Enter"
 const backSpace = /^Backspace$/; // Regex "Backspace"
 const esc = /^Escape$/; // Regex "Escape"
@@ -18,7 +19,7 @@ window.addEventListener("keydown", function(event) {
     if (event.key.match(numChoice)) numInput(event)
     if (event.key.match(operatorChoice)) mathInput(event)
     if (event.key.match(dotChoice)) dotInput(event)
-    if (event.key.match(equalChoice)) operate(firstInput, secondInput, mathOperator)
+    if (event.key.match(equalChoice) && secondInput) operate(firstInput, secondInput, mathOperator)
     if (event.key.match(backSpace)) clearFunction()
     if (event.key.match(esc)) reset()
 })
@@ -38,6 +39,8 @@ for (let i = 0; i < btnItem.length; i++) {
             operate(firstInput, secondInput, mathOperator)}
         } else if (btnInput.textContent.match(ac)) {
             reset()
+        } else if (btnInput.textContent.match(plusMinus)) {
+            console.log("Hi")
         }
     })
 }
@@ -57,7 +60,7 @@ function numBtnInput(btnInput) {
 function mathBtnInput(btnInput) {
     if (result) {
         firstInput = result
-        result = ""
+        //result = ""
         secondInput = ""
         mathOperator = btnInput.textContent
         output.textContent = `${firstInput}`
@@ -103,7 +106,6 @@ function numInput(event) {
 function mathInput(event) {
     if (result) {
         firstInput = result
-        // result = ""
         secondInput = ""
         mathOperator = event.key
         output.textContent = `${firstInput}`
@@ -186,8 +188,8 @@ function reset() {
     secondInput = ""
     mathOperator = ""
     result = ""
-    output.textContent = `${firstInput}`
-    output2.textContent = `${firstInput}`
+    output.textContent = "0"
+    output2.textContent = "0"
 } 
 
 //No additional dots for secondInput, displays final
