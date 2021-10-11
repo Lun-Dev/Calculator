@@ -51,11 +51,18 @@ function numBtnInput(btnInput) {
         secondInput += btnInput.textContent
         output.textContent = `${secondInput}`
         output2.textContent = `${firstInput} ${mathOperator} ${secondInput}`
-    }
+    } 
 }
 
 function mathBtnInput(btnInput) {
-    if (mathOperator < 1) {
+    if (result) {
+        firstInput = result
+        result = ""
+        secondInput = ""
+        mathOperator = btnInput.textContent
+        output.textContent = `${firstInput}`
+        output2.textContent = `${firstInput} ${mathOperator}`
+    } else if (mathOperator < 1) {
         mathOperator = btnInput.textContent
         output.textContent = `${firstInput}`
         output2.textContent = `${firstInput} ${mathOperator}`
@@ -94,7 +101,14 @@ function numInput(event) {
 }
 
 function mathInput(event) {
-    if (mathOperator < 1) {
+    if (result) {
+        firstInput = result
+        result = ""
+        secondInput = ""
+        mathOperator = event.key
+        output.textContent = `${firstInput}`
+        output2.textContent = `${firstInput} ${mathOperator}`
+    } else if (mathOperator < 1) {
         mathOperator = event.key
         output.textContent = `${firstInput}`
         output2.textContent = `${firstInput} ${mathOperator}`
