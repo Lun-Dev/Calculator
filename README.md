@@ -1,6 +1,6 @@
 # Calculator
 
-[Live Demo](https://duckduckgo.com)
+[Live Demo](https://lun-dev.github.io/Calculator/)
 
 ## Known Bugs
 1. When calculating with mousclicking for the second time onwards, sometimes the result = 0
