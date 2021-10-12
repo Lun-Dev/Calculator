@@ -2,7 +2,7 @@ const output = document.getElementById("output")
 const output2 = document.getElementById("output2")
 const btnItem = document.querySelectorAll("button")
 const numChoice = /\d/; // Regex any digit character
-const operatorChoice = /[+|\-|*|%|x|÷]/; // Regex any of "+", "-", "*", "/", "%"
+const operatorChoice = /[+|\-|\/|*|%|x|÷]/; // Regex any of "+", "-", "*", "/", "%"
 const dotChoice = /\./g; // Regex "."
 const plusMinus = /^±$/;
 const equalChoice = /=|Enter/; // Regex "=" or "Enter"
@@ -44,8 +44,9 @@ for (let i = 0; i < btnItem.length; i++) {
         }
     })
 }
+
 function plusMinusBtn() {
-    if (firstInput.charAt(0) === "-") {
+    if (firstInput.charAt(0) === "-" && !(result)) {
         firstInput = firstInput.substring(1)
         output.textContent = `${firstInput}`
     } else if (secondInput.charAt(0) === "-") {
@@ -54,15 +55,14 @@ function plusMinusBtn() {
         output2.textContent = `${firstInput} ${mathOperator} ${secondInput}`
     } else if (result < 0) {
         result = result / -1
+        result = result.toString()
         output.textContent = `${result}`
-        mathBtnInput(btnInput)
-    } else if (firstInput) {
-        firstInputz = "-" + firstInput
-        output.textContent = `${firstInput}`
-    }
+    } else if (result > 0) {
+        result = -(result)
+        result = result.toString()
+        output.textContent = `${result}`
+    } 
 }
-
-
 
 function numBtnInput(btnInput) {
     if (!(mathOperator) && !(secondInput)) {
@@ -111,6 +111,13 @@ function dotBtnInput(btnInput) {
 
 
 function numInput(event) {
+    // if (result) {
+    //     result = ""
+    //     firstInput += event.key
+    //     secondInput = ""
+    //     mathOperator = ""
+    //     output.textContent = `${firstInput}`
+    //     output2.textContent = `${firstInput}`
     if (!(mathOperator) && !(secondInput)) {
         firstInput += event.key
         output.textContent = `${firstInput}`
@@ -141,17 +148,40 @@ function mathInput(event) {
 }
 
 function dotInput(event) {
-    if (firstInput.match(dotChoice) && !(secondInput)) {
-        firstInput
-        output.textContent = `${firstInput}`
-    } else if (!(firstInput.match(dotChoice))) {
+    if (firstInput && secondInput && result) {
+        result = result.toString()
+            if (!(result.match(dotChoice))) {
+                result = firstInput + "."
+                secondInput = ""
+                result = ""
+                output.textContent = `${firstInput}`
+                output2.textContent = `${firstInput} ${mathOperator}`
+            } else if (result.match(dotChoice)) {
+                firstInput = result
+                result = ""
+                secondInput = ""
+                output.textContent = `${firstInput}`
+                output2.textContent = `${firstInput} ${mathOperator}`
+            }
+    } else if (firstInput && secondInput && !(secondInput.match(dotChoice))) {
+        secondInput += event.key
+        output.textContent = `${secondInput}`
+    } else if (firstInput && !(secondInput) && !(firstInput.match(dotChoice))) {
         firstInput += event.key
         output.textContent = `${firstInput}`
-    } else if (firstInput && mathOperator && secondInput.match(dotChoice)) {
-        halfOutput()
-    } else if (firstInput && mathOperator && !(secondInput.match(dotChoice))) {
-        fullOutput(event)
     } 
+    // if (firstInput.match(dotChoice) && !(secondInput)) {
+    //     firstInput
+    //     output.textContent = `${firstInput}`
+    // } else if (!(firstInput.match(dotChoice))) {
+    //     firstInput += event.key
+    //     output.textContent = `${firstInput}`
+    // } else if (firstInput && mathOperator && secondInput.match(dotChoice)) {
+    //     secondInput
+    //     return output.textContent = `${firstInput}${mathOperator}${secondInput}`
+    // } else if (firstInput && mathOperator && !(secondInput.match(dotChoice))) {
+    //     fullOutput(event)
+    // } 
 }
 
 function operate(firstInput, secondInput, mathOperator) {
@@ -196,9 +226,7 @@ function clearFunction() {
         output2.textContent = `${firstInput}`
     }
     if (firstInput === "") {
-        firstInput = 0
-        output.textContent = `${firstInput}`
-        output2.textContent = `${firstInput}`
+        reset()
     }
 }
 
