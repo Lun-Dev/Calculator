@@ -1,16 +1,19 @@
 # Calculator
 
-NO decimal
+## Keyboard Function
 
-a + b OK
-a - b OK
-a * b OK
-a / b OK
+### NO decimal
 
-YES decimal
+* a + b OK
+* a - b OK
+* a * b OK
+* a / b OK
 
-a + b OK
-a - b OK
-a * b OK
-a / b OK
+### YES decimal
 
+* a + b OK
+* a - b OK
+* a * b OK
+* a / b OK
+
+## Mouseclick Function
