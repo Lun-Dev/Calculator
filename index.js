@@ -40,10 +40,29 @@ for (let i = 0; i < btnItem.length; i++) {
         } else if (btnInput.textContent.match(ac)) {
             reset()
         } else if (btnInput.textContent.match(plusMinus)) {
-            console.log("Hi")
+            plusMinusBtn()
         }
     })
 }
+function plusMinusBtn() {
+    if (firstInput.charAt(0) === "-") {
+        firstInput = firstInput.substring(1)
+        output.textContent = `${firstInput}`
+    } else if (secondInput.charAt(0) === "-") {
+        secondInput = secondInput.substring(1)
+        output.textContent = `${secondInput}`
+        output2.textContent = `${firstInput} ${mathOperator} ${secondInput}`
+    } else if (result < 0) {
+        result = result / -1
+        output.textContent = `${result}`
+        mathBtnInput(btnInput)
+    } else if (firstInput) {
+        firstInputz = "-" + firstInput
+        output.textContent = `${firstInput}`
+    }
+}
+
+
 
 function numBtnInput(btnInput) {
     if (!(mathOperator) && !(secondInput)) {
